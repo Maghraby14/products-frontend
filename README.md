@@ -1,75 +1,61 @@
-# React + TypeScript + Vite
+# 🛍️ Product Store – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** for the Product Store application built with **React**, **Vite**, and **TypeScript**.  
+It displays products, allows filtering by category, shows stock availability, and supports responsive design for all devices.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+- React 18
+- Vite
+- TypeScript
+- Axios
+- React Router
+- Tailwind CSS / CSS Modules
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🏗️ Layout Approach
 
-## Expanding the ESLint configuration
+### Component-Based Architecture
+src/
+- App.tsx include all logic for the application
+- Each UI block is a reusable component.
+- `ProductCard` handles product image, name, price, category, quantity, and stock state.
+- Navbar includes search and category filters.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📱 Responsive Design Considerations
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Mobile First**: single-column layout on mobile devices.
+- **Breakpoints**:
+| Width | Layout |
+|-------|--------|
+| 0–480px | Single column |
+| 480–768px | 2 columns |
+| ≥1024px | 3–4 columns |
+- Grid layout uses `auto-fit` for dynamic columns.
+- Buttons expand to full width on mobile.
+- Images use `object-fit: cover` for consistent display.
+- Navbar collapses on smaller screens.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## ⚙️ How to Run Locally
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Maghraby14/product-frontend.git
+cd product-frontend
+```
+2. install dependencies
+   ```bash
+   npm install
+   ```
+3. start development server
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
